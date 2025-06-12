@@ -1,0 +1,66 @@
+{
+  "name": "BICS Semantic Kernel Agent Development",
+  "image": "mcr.microsoft.com/devcontainers/java:17-jdk-jammy",
+  
+  "features": {
+    "ghcr.io/devcontainers/features/docker-in-docker:2": {},
+    "ghcr.io/devcontainers/features/github-cli:1": {}
+  },
+  
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "vscjava.vscode-java-pack",
+        "redhat.vscode-xml",
+        "redhat.vscode-yaml",
+        "ms-vscode.vscode-json",
+        "rangav.vscode-thunder-client",
+        "humao.rest-client",
+        "ms-vscode.vscode-docker",
+        "github.vscode-pull-request-github"
+      ],
+      "settings": {
+        "java.home": "/usr/local/sdkman/candidates/java/current",
+        "java.configuration.runtimes": [
+          {
+            "name": "JavaSE-17",
+            "path": "/usr/local/sdkman/candidates/java/current"
+          }
+        ],
+        "java.compile.nullAnalysis.mode": "automatic",
+        "java.format.settings.url": "https://raw.githubusercontent.com/google/styleguide/gh-pages/eclipse-java-google-style.xml",
+        "java.format.settings.profile": "GoogleStyle",
+        "editor.formatOnSave": true,
+        "files.exclude": {
+          "**/target": true,
+          "**/.classpath": true,
+          "**/.project": true,
+          "**/.settings": true,
+          "**/.factorypath": true
+        }
+      }
+    }
+  },
+  
+  "forwardPorts": [8080, 5005],
+  "portsAttributes": {
+    "8080": {
+      "label": "Agent API",
+      "onAutoForward": "notify"
+    },
+    "5005": {
+      "label": "Debug Port",
+      "onAutoForward": "silent"
+    }
+  },
+  
+  "postCreateCommand": "cd agent && mvn dependency:resolve",
+  
+  "postStartCommand": "echo 'BICS Semantic Kernel Agent development environment ready!'",
+  
+  "remoteUser": "vscode",
+  
+  "mounts": [
+    "source=vscode-server-insiders,target=/home/vscode/.vscode-server-insiders,type=volume"
+  ]
+}

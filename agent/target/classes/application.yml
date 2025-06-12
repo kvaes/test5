@@ -1,0 +1,58 @@
+# BICS Semantic Kernel Agent Configuration
+# This file contains all configuration settings for the agent including API endpoints,
+# authentication settings, and runtime parameters.
+
+agent:
+  name: "BICS Semantic Kernel Agent"
+  version: "1.0.0"
+  
+# API endpoint configurations
+# These URLs are pre-populated based on the OpenAPI specifications
+api:
+  endpoints:
+    # Connect API - Customer and product management
+    connect: "https://connect.api.bics.com"
+    
+    # MyNumbers API - Number management services
+    mynumbers: "https://mynumbers.api.bics.com"
+    
+    # MyNumbers Address Management API - Address management services
+    mynumbers-address: "https://mynumbers-address.api.bics.com"
+    
+    # MyNumbers CDR API - Call Detail Record services
+    mynumbers-cdr: "https://mynumbers-cdr.api.bics.com"
+    
+    # MyNumbers Disconnection API - Number disconnection services
+    mynumbers-disconnection: "https://mynumbers-disconnection.api.bics.com"
+    
+    # MyNumbers Emergency Services API - Emergency services management
+    mynumbers-emergency: "https://mynumbers-emergency.api.bics.com"
+    
+    # MyNumbers Number Porting API - Number porting services
+    mynumbers-porting: "https://mynumbers-porting.api.bics.com"
+    
+    # SMS API - SMS messaging services
+    sms: "https://sms.api.bics.com"
+
+# HTTP client configuration
+http:
+  timeout:
+    connection: 30000  # Connection timeout in milliseconds
+    read: 60000        # Read timeout in milliseconds
+  retry:
+    maxAttempts: 3     # Maximum retry attempts
+    backoffMs: 1000    # Initial backoff in milliseconds
+
+# Logging configuration
+logging:
+  level:
+    root: INFO
+    com.bics.agent: DEBUG
+  pattern:
+    console: "%d{yyyy-MM-dd HH:mm:ss} [%thread] %-5level %logger{36} - %msg%n"
+
+# Authentication configuration (placeholder for future implementation)
+auth:
+  # API keys, OAuth settings, etc. would be configured here
+  # For security, these should be provided via environment variables
+  enabled: false
