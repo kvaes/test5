@@ -80,7 +80,7 @@ jobs:
         docker save bics-semantic-kernel-agent:${{ github.sha }} | gzip > agent-image.tar.gz
         
     - name: Upload Docker image artifact
-      uses: actions/upload-artifact@v3
+      uses: actions/upload-artifact@v4
       with:
         name: agent-docker-image
         path: agent-image.tar.gz
